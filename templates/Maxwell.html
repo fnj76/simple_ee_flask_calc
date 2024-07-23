@@ -1,0 +1,215 @@
+{% extends "index.html" %}
+
+{% block mainContent %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-8">Calculadora de las Leyes de Maxwell</h1>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Ley de Gauss para el campo eléctrico</h2>
+  <p>
+    La ley de Gauss para el campo eléctrico establece que la integral de la componente normal del campo eléctrico sobre una superficie cerrada es igual a la carga eléctrica total dentro de la superficie dividida por la permitividad del vacío.
+  </p>
+  <div class="math">
+    $$\oint \mathbf{E} \cdot d\mathbf{A} = \frac{Q}{\epsilon_0}$$
+  </div>
+  <form class="container" action="{{url_for('ecuaciones_maxwell')}}" method="post">
+    <div class="row">
+      <div class="col-lg-2 col-md-3">
+        <input
+          type="text"
+          name="carga__"
+          class="form-control"
+          placeholder="Carga (C)"
+          required>
+      </div>
+
+      <div class="col-lg-2 col-md-3">
+        <input
+          type="text"
+          name="area__"
+          class="form-control"
+          placeholder="Área (m²)"
+          required>
+      </div>
+
+      <div class="col-lg-3">
+        <input type="submit" value="Calcular Gauss Eléctrico" class="btn btn-primary" />
+      </div>
+
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-lg-1">
+        <div class="text-center">=</div>
+      </div>
+      <div class="col-lg-3">
+        <input type="text" class="form-control" placeholder="Resultado" value="{{resultado_gauss_electrica}}" />
+      </div>
+    </div>
+  </form>
+
+  <h2>Ley de Gauss para el campo magnético</h2>
+  <p>
+    La ley de Gauss para el campo magnético establece que la integral de la componente normal del campo magnético sobre una superficie cerrada es igual a cero, lo que significa que no hay monopolos magnéticos.
+  </p>
+  <div class="math">
+    $$\oint \mathbf{B} \cdot d\mathbf{A} = 0$$
+  </div>
+  <form class="container" action="{{url_for('ecuaciones_maxwell')}}" method="post">
+    <div class="row">
+      <div class="col-lg-2 col-md-3">
+        <input
+          type="text"
+          name="campo_magnetico"
+          class="form-control"
+          placeholder="Campo magnético (T)"
+          required>
+      </div>
+
+      <div class="col-lg-2 col-md-3">
+        <input
+          type="text"
+          name="area_magnetica"
+          class="form-control"
+          placeholder="Área magnética (m²)"
+          required>
+      </div>
+
+      <div class="col-lg-3">
+        <input type="submit" value="Calcular Gauss Magnético" class="btn btn-primary" />
+      </div>
+
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-lg-1">
+        <div class="text-center">=</div>
+      </div>
+      <div class="col-lg-3">
+        <input type="text" class="form-control" placeholder="Resultado" value="{{resultado_gauss_magnetica}}" />
+      </div>
+    </div>
+  </form>
+
+  <h2>Ley de Faraday de la inducción</h2>
+  <p>
+    La ley de Faraday de la inducción establece que la fuerza electromotriz inducida en un circuito es igual al negativo de la tasa de cambio del flujo magnético a través del circuito.
+  </p>
+  <div class="math">
+    $$\mathcal{E} = -\frac{d\Phi}{dt}$$
+  </div>
+  <form class="container" action="{{ url_for('ecuaciones_maxwell') }}" method="post">
+    <!-- Fila para el campo eléctrico -->
+    <div class="row">
+        <div class="col-lg-2 col-md-3">
+            <input
+                type="text"
+                name="campo_electrico"
+                class="form-control"
+                placeholder="Campo eléctrico (V/m)"
+                required>
+        </div>
+
+        <!-- Fila para la longitud -->
+        <div class="col-lg-2 col-md-3">
+            <input
+                type="text"
+                name="longitud"
+                class="form-control"
+                placeholder="Longitud (m)"
+                required>
+        </div>
+
+        <!-- Fila para el flujo magnético -->
+        <div class="col-lg-2 col-md-3">
+            <input
+                type="text"
+                name="flujo_magnetico"
+                class="form-control"
+                placeholder="Flujo magnético (Wb)"
+                required>
+        </div>
+
+        <!-- Botón de envío del formulario -->
+        <div class="col-lg-3">
+            <input type="submit" value="Calcular Faraday" class="btn btn-primary" />
+        </div>
+    </div>
+
+    <!-- Fila para mostrar el resultado -->
+    <div class="row mt-3">
+        <div class="col-lg-1">
+            <div class="text-center">=</div>
+        </div>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="Resultado" value="{{ resultado_faraday_induccion }}" readonly />
+        </div>
+    </div>
+</form>
+
+    
+      <h2>Ley de Ampere con corrección de Maxwell</h2>
+      <p>
+        La ley de Ampere con corrección de Maxwell establece que la integral de la componente tangencial del campo magnético sobre una curva cerrada es igual a la suma de la corriente eléctrica total que pasa a través de la curva y la tasa de cambio del flujo eléctrico a través de la curva.
+      </p>
+      <div class="math">
+        $$\oint \mathbf{B} \cdot d\mathbf{l} = \mu_0 I + \mu_0 \epsilon_0 \frac{d\Phi_E}{dt}$$
+      </div>
+      <form class="container" action="{{url_for('ecuaciones_maxwell')}}" method="post">
+        <div class="row">
+          <div class="col-lg-2 col-md-3">
+            <input
+              type="text"
+              name="campo_magnetico_ampere"
+              class="form-control"
+              placeholder="Campo magnético (T)"
+              required>
+          </div>
+    
+          <div class="col-lg-2 col-md-3">
+            <input
+              type="text"
+              name="longitud_ampere"
+              class="form-control"
+              placeholder="Longitud (m)"
+              required>
+          </div>
+    
+          <div class="col-lg-2 col-md-3">
+            <input
+              type="text"
+              name="corriente_electrica"
+              class="form-control"
+              placeholder="Corriente eléctrica (A)"
+              required>
+          </div>
+    
+          <div class="col-lg-2 col-md-3">
+            <input
+              type="text"
+              name="flujo_electrico"
+              class="form-control"
+              placeholder="Flujo eléctrico (V)"
+              required>
+          </div>
+    
+          <div class="col-lg-3">
+            <input type="submit" value="Calcular Ampere" class="btn btn-primary" />
+          </div>
+    
+        </div>
+    
+        <div class="row mt-3">
+          <div class="col-lg-1">
+            <div class="text-center">=</div>
+          </div>
+          <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="Resultado" value="{{resultado_ampere_correccion_maxwell}}" />
+          </div>
+        </div>
+      </form>
+    </div>
+    {% endblock %}

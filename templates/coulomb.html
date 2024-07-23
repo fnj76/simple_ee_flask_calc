@@ -1,0 +1,88 @@
+{% extends "index.html" %} {% block mainContent %}
+<!-- Sección de jumbotron para destacar el título -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <!-- Título de la página -->
+    <h1 class="display-8">Calculadora de la ley Coulomb</h1>
+  </div>
+</div>
+
+<!-- Contenedor para el contenido principal -->
+<div class="container">
+  <p>
+    La ley de Coulomb es una fórmula que describe la fuerza electrostática entre
+    dos cargas puntuales. La fórmula es la siguiente:
+  </p>
+  <!-- Fórmula de la ley de Coulomb en formato LaTeX -->
+  <div class="math">$$F = \frac{k \cdot q_1 \cdot q_2}{r^2}$$</div>
+  <p>Donde:</p>
+  <ul>
+    <li><i>F</i> es la fuerza electrostática entre las dos cargas</li>
+    <li><i>k</i> es la constante de Coulomb</li>
+    <li>
+      <i>q<sub>1</sub></i> y <i>q<sub>2</sub></i> son las cargas puntuales
+    </li>
+    <li><i>r</i> es la distancia entre las dos cargas</li>
+  </ul>
+</div>
+
+<!-- Formulario para ingresar los datos y calcular la fuerza -->
+<form class="container" action="{{url_for('calcular')}}" method="post">
+  <div class="row">
+    <!-- Campo para la primera carga -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="number"
+        name="carga1"
+        class="form-control"
+        placeholder="Primera Carga (C)"
+        required
+      />
+    </div>
+
+    <!-- Campo para la segunda carga -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="number"
+        name="carga2"
+        class="form-control"
+        placeholder="Segunda Carga (C)"
+        required
+      />
+    </div>
+
+    <!-- Campo para la distancia entre las cargas -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="number"
+        name="distancia"
+        class="form-control"
+        placeholder="Distancia (m)"
+        required
+      />
+    </div>
+
+    <!-- Botón de envío del formulario -->
+    <div class="col-lg-3">
+      <input type="submit" value="Calcular" class="btn btn-primary" />
+    </div>
+  </div>
+
+  <!-- Fila para mostrar el resultado del cálculo -->
+  <div class="row mt-3">
+    <div class="col-lg-1">
+      <div class="text-center">=</div>
+    </div>
+    <div class="col-lg-3">
+      <!-- Campo para mostrar el resultado del cálculo -->
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Resultado"
+        value="{{resultado}}"
+      />
+    </div>
+  </div>
+</form>
+
+{% endblock %}

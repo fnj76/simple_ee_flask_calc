@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Definición del conjunto de caracteres para la página -->
+    <meta charset="UTF-8" />
+    
+    <!-- Inclusión de MathJax para renderizar fórmulas matemáticas en formato TeX -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Configuración del viewport para hacer la página adaptable a dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Inclusión de KaTeX para renderizar matemáticas en formato LaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Título de la página que aparece en la pestaña del navegador -->
+    <title>Calculadora de Formulas Electricas</title>
+
+    <!-- Inclusión de Bootstrap CSS para el estilo de la página -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Estilos personalizados para la página -->
+    <style>
+      body {
+        background-color: #f5f5f5; /* Color de fondo de la página */
+        font-family: Arial, sans-serif; /* Fuente del texto */
+      }
+      .container-fluid {
+        max-width: 1000px; /* Ancho máximo del contenedor */
+        margin: 40px auto; /* Margen superior e inferior, centrado horizontalmente */
+        padding: 30px; /* Espaciado interno del contenedor */
+        background-color: #fff; /* Color de fondo del contenedor */
+        border: 1px solid #ddd; /* Borde del contenedor */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+      }
+      .navbar-brand {
+        font-size: 24px; /* Tamaño de fuente del nombre de la marca en la barra de navegación */
+        font-weight: bold; /* Negrita para el nombre de la marca */
+        color: #337ab7; /* Color del texto de la marca */
+      }
+      .nav-link {
+        color: #337ab7; /* Color de los enlaces en la barra de navegación */
+      }
+      .nav-link:hover {
+        color: #23527c; /* Color de los enlaces al pasar el ratón sobre ellos */
+      }
+      .nav-link.active {
+        color: #23527c; /* Color de los enlaces activos */
+        font-weight: bold; /* Negrita para los enlaces activos */
+      }
+      .main-content {
+        padding: 20px; /* Espaciado interno del contenido principal */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <!-- Nombre de la marca o título de la aplicación -->
+        <a class="navbar-brand" href="#">Calculadora de Formulas Electricas</a>
+        <!-- Botón para colapsar la barra de navegación en dispositivos móviles -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Elementos de la barra de navegación colapsable -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <!-- Enlace de inicio con clase activa -->
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{{url_for('main')}}"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <!-- Enlace para la sección de Coulomb -->
+              <a class="nav-link" href="{{url_for('coulomb')}}">Coulomb</a>
+            </li>
+            <li class="nav-item">
+              <!-- Enlace para la sección de Densidad -->
+              <a class="nav-link" href="{{url_for('densidad')}}">Densidad</a>
+            </li>
+            <li class="nav-item">
+              <!-- Enlace para la sección de Potencial -->
+              <a class="nav-link" href="{{url_for('potencial')}}">Potencial</a>
+            </li>
+            <li class="nav-item">
+              <!-- Enlace para la sección de Intensidad -->
+              <a class="nav-link" href="{{url_for('intensidad')}}"
+                >Intensidad</a
+              >
+            </li>
+            <li class="nav-item">
+              <!-- Enlace para la sección de Ecuaciones de Maxwell -->
+              <a class="nav-link" href="{{url_for('Maxwell')}}"
+                >Ecuaciones de maxwell</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenido principal de la página -->
+    <div class="container-fluid">
+      <div class="main-content">
+        <!-- Bloque de contenido principal, que se puede sobrescribir -->
+        {% block mainContent %}
+        {% include 'inicio.html' %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <!-- Inclusión de Popper.js, requerido para algunos componentes de Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2

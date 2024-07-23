@@ -1,0 +1,75 @@
+{% extends "index.html" %}
+
+{% block mainContent %}
+<!-- Sección de jumbotron para destacar el título -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <!-- Título de la página -->
+    <h1 class="display-8">Calculadora de Densidad de Carga Eléctrica</h1>
+  </div>
+</div>
+
+<!-- Contenedor para el contenido principal -->
+<div class="container">
+  <p>
+    La densidad de carga eléctrica se calcula mediante la fórmula:
+  </p>
+  <!-- Fórmula para calcular la densidad de carga eléctrica en formato LaTeX -->
+  <div class="math">
+    $$\rho = \frac{Q}{A}$$
+  </div>
+  <p>
+    Donde:
+  </p>
+  <ul>
+    <!-- Descripción de cada término en la fórmula -->
+    <li><i>ρ</i> es la densidad de carga eléctrica</li>
+    <li><i>Q</i> es la carga eléctrica</li>
+    <li><i>A</i> es el área superficial</li>
+  </ul>
+</div>
+
+<!-- Formulario para ingresar los datos y calcular la densidad de carga eléctrica -->
+<form class="container" action="{{url_for('calcular1')}}" method="post">
+  <div class="row">
+    <!-- Campo para ingresar la carga eléctrica -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="carga"
+        class="form-control"
+        placeholder="Carga (C)"
+        required>
+    </div>
+
+    <!-- Campo para ingresar el área superficial -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="area"
+        class="form-control"
+        placeholder="Área Superficial (m²)"
+        required>
+    </div>
+
+    <!-- Botón para enviar el formulario y calcular el resultado -->
+    <div class="col-lg-3">
+        <input type="submit" value="Calcular" class="btn btn-primary" />
+    </div>
+
+  </div>
+
+  <!-- Fila para mostrar el resultado del cálculo -->
+  <div class="row mt-3">
+        <div class="col-lg-1">
+            <!-- Simboliza el signo igual (=) entre la fórmula y el resultado -->
+            <div class="text-center">=</div>
+        </div>
+        <div class="col-lg-3">
+            <!-- Campo para mostrar el resultado del cálculo -->
+            <input type="text" class="form-control" placeholder="Resultado" value="{{resultado}}" />
+        </div>
+  </div>
+</form>
+
+{% endblock %}

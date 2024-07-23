@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+
+{% block mainContent %}
+<!-- Sección jumbotron para destacar el título de la calculadora -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <!-- Título de la página que describe la calculadora -->
+    <h1 class="display-8">Calculadora de Intensidad de Campo Eléctrico</h1>
+  </div>
+</div>
+
+<!-- Contenedor para el contenido principal de la calculadora -->
+<div class="container">
+  <!-- Explicación del concepto de intensidad de campo eléctrico -->
+  <p>
+    La intensidad de campo eléctrico se calcula mediante la fórmula:
+  </p>
+  <!-- Fórmula para calcular la intensidad de campo eléctrico en formato LaTeX -->
+  <div class="math">
+    $$E = \frac{k \cdot Q}{r^2}$$
+  </div>
+  <!-- Explicación de los términos en la fórmula -->
+  <p>
+    Donde:
+  </p>
+  <ul>
+    <li><i>E</i> es la intensidad de campo eléctrico</li>
+    <li><i>k</i> es la constante de Coulomb</li>
+    <li><i>Q</i> es la carga eléctrica</li>
+    <li><i>r</i> es la distancia desde la carga</li>
+  </ul>
+</div>
+
+<!-- Formulario para ingresar datos y calcular la intensidad del campo eléctrico -->
+<form class="container" action="{{url_for('calcular3')}}" method="post">
+  <div class="row">
+    <!-- Campo para ingresar la carga eléctrica -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="carga"
+        class="form-control"
+        placeholder="Carga (C)"
+        required>
+    </div>
+
+    <!-- Campo para ingresar la distancia desde la carga -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="distancia"
+        class="form-control"
+        placeholder="Distancia (m)"
+        required>
+    </div>
+
+    <!-- Botón para enviar el formulario y calcular la intensidad del campo eléctrico -->
+    <div class="col-lg-3">
+        <input type="submit" value="Calcular" class="btn btn-primary" />
+    </div>
+  </div>
+
+  <!-- Fila para mostrar el resultado del cálculo -->
+  <div class="row mt-3">
+        <div class="col-lg-1">
+            <!-- Signo igual para separar el campo de entrada y el resultado -->
+            <div class="text-center">=</div>
+        </div>
+        <div class="col-lg-3">
+            <!-- Campo para mostrar el resultado del cálculo -->
+            <input type="text" class="form-control" placeholder="Resultado" value="{{resultado}}" />
+        </div>
+  </div>
+</form>
+
+{% endblock %}

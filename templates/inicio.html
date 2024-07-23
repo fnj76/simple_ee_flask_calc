@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block mainContent %}
+  <header>
+    <h1 class="display-4">Bienvenido a la Calculadora de Fórmulas Eléctricas</h1>
+    
+    <!-- Imagen que se encuentra en la carpeta 'static' -->
+    <img src="{{ url_for('static', filename='images/foto.jpg') }}" alt="Logo de la Calculadora" class="img-fluid" />
+    <p>Esta calculadora te permite calcular diferentes fórmulas eléctricas, como la ley de Coulomb, la densidad de carga, el potencial eléctrico y la intensidad de corriente.</p>
+  </header>
+{% endblock %}
+
+

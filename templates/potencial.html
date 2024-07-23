@@ -1,0 +1,90 @@
+{% extends "index.html" %} {% block mainContent %}
+<!-- Sección jumbotron que resalta el título principal de la página -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <!-- Título grande y visible para la página de la calculadora -->
+    <h1 class="display-8">Calculadora de Energía Potencial Eléctrica</h1>
+  </div>
+</div>
+
+<!-- Contenedor para el contenido principal de la página -->
+<div class="container">
+  <!-- Introducción que explica cómo se calcula la energía potencial eléctrica -->
+  <p>La energía potencial eléctrica se calcula mediante la fórmula:</p>
+  <!-- Fórmula matemática para calcular la energía potencial eléctrica, en formato LaTeX -->
+  <div class="math">$$U = \frac{k \cdot q_1 \cdot q_2}{r}$$</div>
+  <!-- Explicación detallada de los componentes de la fórmula -->
+  <p>Donde:</p>
+  <ul>
+    <!-- Descripción de cada variable en la fórmula -->
+    <li><i>U</i> es la energía potencial eléctrica</li>
+    <li>
+      <i>k</i> es la constante de Coulomb (valor que depende del medio en el que
+      se encuentran las cargas)
+    </li>
+    <li><i>q1</i> y <i>q2</i> son las cargas eléctricas involucradas</li>
+    <li><i>r</i> es la distancia entre las dos cargas eléctricas</li>
+  </ul>
+</div>
+
+<!-- Formulario para que el usuario ingrese los datos necesarios para calcular la energía potencial eléctrica -->
+<form class="container" action="{{url_for('calcular2')}}" method="post">
+  <div class="row">
+    <!-- Campo para ingresar el valor de la primera carga -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="carga1"
+        class="form-control"
+        placeholder="Primera Carga (C)"
+        required
+      />
+    </div>
+
+    <!-- Campo para ingresar el valor de la segunda carga -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="carga2"
+        class="form-control"
+        placeholder="Segunda Carga (C)"
+        required
+      />
+    </div>
+
+    <!-- Campo para ingresar la distancia entre las dos cargas -->
+    <div class="col-lg-2 col-md-3">
+      <input
+        type="text"
+        name="distancia"
+        class="form-control"
+        placeholder="Distancia (m)"
+        required
+      />
+    </div>
+
+    <!-- Botón de envío del formulario que calcula la energía potencial eléctrica -->
+    <div class="col-lg-3">
+      <input type="submit" value="Calcular" class="btn btn-primary" />
+    </div>
+  </div>
+
+  <!-- Fila para mostrar el resultado del cálculo después de enviar el formulario -->
+  <div class="row mt-3">
+    <div class="col-lg-1">
+      <!-- Signo igual que separa el campo de entrada del resultado -->
+      <div class="text-center">=</div>
+    </div>
+    <div class="col-lg-3">
+      <!-- Campo para mostrar el resultado del cálculo de energía potencial eléctrica -->
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Resultado"
+        value="{{resultado}}"
+      />
+    </div>
+  </div>
+</form>
+
+{% endblock %}
